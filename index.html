@@ -1,0 +1,1203 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>please enter your title</title>
+		<meta charset="utf-8">
+		<meta name="Author" content="潭州学院-阿飞老师">
+		<link rel="stylesheet" href="css/header.css" type='text/css' />
+		<link rel="stylesheet" href="css/style.css" type='text/css' />
+		<script type="text/javascript" src='js/jquery-1.12.1.min.js'></script>
+		<script type="text/javascript" src='js/data.js'></script>
+
+		<style type="text/css">
+			.nav{
+				height:370px;
+				width:980px;
+				margin:0 auto;
+				margin-bottom:40px !important;
+				font-size:26px;
+				font-weight:bold;
+			}
+			#slide{
+				width:50px;
+				height:540px;
+				border-radius:3px;
+				overflow:hidden;
+				background:#eee;
+				position:fixed;
+				bottom:130px;
+				margin-left:990px;
+				z-index: 101;
+			}
+			#slide.on{
+				top:0;
+				bottom:auto;
+			}
+			#slide.top0{
+				top:235px;
+				bottom:auto;
+			}
+			#slide ul li{
+				width:50px;
+				height:34px;
+				font-size:12px;
+				text-align:center;
+				line-height:34px;
+				cursor:pointer;
+			}
+			#slide ul li span{
+				display:block;
+				width:100%;
+				height:100%;
+				position:relative;
+				z-index:1;
+				transition:background .3s,color .3s;
+			}
+			#slide ul li span.zIndex{
+				z-index : 2;
+			}
+			#slide ul li span.hover,#slide ul li span.click,#slide .sort.hover{
+				background:#09c;
+				color:#fff;
+			}
+			#slide ul li.list span.click{
+				background:transparent;
+				color:#000;
+			}
+			#slide ul li.list span.hover{
+				background:#09c;
+				color:#fff;
+			}
+			#slide ul li.list span{
+				cursor:move;
+			}
+			#slide ul li.color{
+				background:#09c;
+				position:absolute;
+				left:0px;
+				top:0px;
+				display::none;
+			}
+			#slide ul li.color.hide {
+				display:none;
+			}
+			#slide ul li.color.show{
+				display:block;
+			}
+			#slide ul li.color.list{
+				display:none;
+			}
+			#slide .clone{
+				display:block;
+				width:50px;
+				height:34px;
+				background:#09c;
+				color:#fff;
+				position:absolute;
+				z-index:2;
+				font-size:12px;
+				text-align:center;
+				line-height:34px;
+				cursor:move;
+				display:none;
+			}
+			#slide .sort{
+				height:60px;
+				width:50px;
+				font-size:12px;
+				text-align:center;
+				line-height:60px;
+				cursor:pointer;
+				transition:.3s;
+			}
+			#slideWrap{
+				width:980px;
+				height:0px;
+				margin:0 auto;
+			}
+			.bangumi{
+				height:300px;
+				margin-top:50px;
+				background:#fff !important;
+				overflow:hidden;
+				position:relative;
+			}
+			.bangumi-list{
+				height:300px;
+				width:700px;
+				overflow:auto;
+			}
+			/*::-webkit-scrollbar{width:10px; background:#ddd;}*/
+			/*::-webkit-scrollbar-thumb{width:8px; border:1px solid #ddd; background:#eee;}*/
+			.bangumi .b-list{
+				width:180px;
+				height:75px;
+				float:left;
+				margin:0 45px 35px 0;
+				font-weight:normal;
+				position:relative;
+			}
+			.bangumi .b-list .img{
+				width:75px;
+				height:75px;
+				float:left;
+				border-radius:3px;
+				overflow:hidden;
+			}
+			.bangumi .b-list .img img{
+				width:100%;
+				height:100%;
+			}
+			.bangumi .b-list .title{
+				font-size:12px;
+				float:left;
+				width:95px;
+				height:40px;
+				line-height:20px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				margin-left:10px;
+			}
+			.bangumi .b-list .new{
+				font-size:12px;
+				width:100px;
+				height:20px;
+				line-height:20px;
+				position:absolute;
+				left:85px;
+				bottom:0;
+			}
+			.bangumi .b-list .new span{
+				display:inline-block;
+				height:20px;
+				padding:0 5px;
+				border-radius:10px;
+				background:#f6f;
+				margin-left:5px;
+				color:#fff;
+			}
+			.bangumi .scroll{
+				width:22px;
+				height:300px;
+				background:#fff;;
+				position:absolute;
+				left:678px;
+				top:0;
+			}
+			.bangumi .scroll .scrollbar{
+				width:10px;
+				height:300px;
+				margin:0 auto;
+				background:#ddd;
+				position:relative;
+			}
+			.bangumi .scroll .scrollthumb{
+				width:8px;
+				height:200px;
+				border:1px solid #ddd;
+				background:#eee;
+				cursor:default;
+				position:absolute;
+				left:0;
+				top:0;
+			}
+
+		</style>
+	</head>
+	<body>
+		
+		<!-- header start -->
+		<div id="header">
+			<div id="h-top">
+				<div class='h-t-shadow1'></div>
+				<div class='h-t-shadow2'></div>
+				<div class="h-t-main">
+					<div class="h-t-m-left">
+						<ul>
+							<li class='l1'>
+								<a href=''><i></i><span>主站</span></a>
+							</li>
+							<li><a href="" title='画友'><span>画友</span></a></li>
+							<li class='l3'>
+								<a href="" title='游戏中心'><span>游戏中心</span></a>
+								<div class="hide">
+									<div class="hide-left">
+										<div class="hide-left-top">
+											<a href=''><p>七周年祝福</p></a>
+										</div>
+										<div class="hide-left-bot">
+											<ul>
+												<li>
+													<a href="">
+														<div><img src="img/header/top/game/2.png" width='67' height='67' alt="" /></div>
+														<p class="b-dec">ICHU偶</p>
+													</a>
+												</li>
+												<li>
+													<a href="">
+														<div><img src="img/header/top/game/3.png" width='67' height='67' alt="" /></div>
+														<p class="b-dec">战舞幻想</p>
+													</a>
+												</li>
+												<li>
+													<a href="">
+														<div><img src="img/header/top/game/4.png" width='67' height='67' alt="" /></div>
+														<p class="b-dec">刀剑神域</p>
+													</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="hide-right">
+										<div class="r-title"><img src="img/header/top/game/title.png" alt="" /></div>
+										<a href="" class="r-ltan">游戏论坛</a>
+										<ul class="r-list">
+											<li dataImg='img/header/top/game/show1.png' ><a href="">苍之骑士团</a></li>
+											<li dataImg='img/header/top/game/show2.png'><a href="">幻游猎人</a></li>
+											<li dataImg='img/header/top/game/show3.png'><a href="">命运-冠位指定（Fate/GO）</a></li>
+											<li dataImg='img/header/top/game/show4.png'><a href="">魔法少女小圆</a></li>
+										</ul>
+										<div class="showImg"><img src="" alt="" /></div>
+									</div>
+								</div>
+							</li>
+							<li class='l4'>
+								<a href="" title='直播'><span>直播</span></a>
+								<div class="hide">
+									<div class="hide-live">
+										<div class="title">热门直播:</div>
+										<ul class='hide-live-list'>
+											<li>
+												<div class="hide-live-list-img"><img src="img/header/top/live/1.jpg" alt="" width='67' height='67' /></div>
+												<p class='hide-live-list-dec'>纯洁的污力羊、</p>
+												<div class="cover">
+													<span class='cover1'></span><span class='cover2'>LIVE</span>
+												</div>
+											</li>
+											<li>
+												<div class="hide-live-list-img"><img src="img/header/top/live/2.jpg" alt="" width='67' height='67' /></div>
+												<p class='hide-live-list-dec'>橙光直播间</p>
+												<div class="cover">
+													<span class='cover1'></span><span class='cover2'>LIVE</span>
+												</div>
+											</li>
+											<li>
+												<div class="hide-live-list-img"><img src="img/header/top/live/3.jpg" alt="" width='67' height='67' /></div>
+												<p class='hide-live-list-dec'>小旭音乐</p>
+												<div class="cover">
+													<span class='cover1'></span><span class='cover2'>LIVE</span>
+												</div>
+											</li>
+											<li>
+												<div class="hide-live-list-img"><img src="img/header/top/live/4.jpg" alt="" width='67' height='67' /></div>
+												<p class='hide-live-list-dec'>皮w蛋</p>
+												<div class="cover">
+													<span class='cover1'></span><span class='cover2'>LIVE</span>
+												</div>
+											</li>
+											<li>
+												<div class="hide-live-list-img"><img src="img/header/top/live/5.jpg" alt="" width='67' height='67' /></div>
+												<p class='hide-live-list-dec'>菠菜喵丶</p>
+												<div class="cover">
+													<span class='cover1'></span><span class='cover2'>LIVE</span>
+												</div>
+											</li>
+											<li>
+												<div class="hide-live-list-img"><img src="img/header/top/live/6.jpg" alt="" width='67' height='67' /></div>
+												<p class='hide-live-list-dec'>1931女子偶像组合</p>
+												<div class="cover">
+													<span class='cover1'></span><span class='cover2'>LIVE</span>
+												</div>
+											</li>
+										</ul>
+									</div>
+									<div class="hide-active">
+										<div class="title">热门活动:</div>
+										<div class="content">
+											<a href=""><img src="img/header/top/live/7.jpg" alt="" /></a>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li><a href="" title='周边'><span>周边</span></a></li>
+							<li class='l6'><a href="" title='BML'><i></i><span>BML</span></a></li>
+						</ul>
+					</div>
+					<div class="h-t-m-right">
+						<div class="h-login">
+							<a href="">登录</a>|<a href="">注册</a>
+						</div>
+						<div class="h-contribute" dataNormal='img/header/top/login/post.png' dataHover='img/header/top/login/post-hover.png'>
+							<a class='c-a' href="" >投&nbsp;稿</a>
+							<div class="h-c-hide">
+								<div class="h-c-hide-left h-c-hide-div">
+									<a href=''>
+									<p class='h-c-hide-img' style='background-position:-470px -918px;'></p>
+									<p class='h-c-hide-dec'>视频投稿</p>
+									</a>
+								</div>
+								<div class="h-c-hide-right h-c-hide-div">
+									<a href=''>
+									<p class='h-c-hide-img' style='background-position:-470px -981px;'></p>
+									<p class='h-c-hide-dec'>投稿管理</p>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="h-logo">
+				<div class="h-l-a"><a href=""><img src="img/header/logo.png" alt="" /></a></div>
+				<div class="h-l-search">
+					<div class="h-l-s-rank">
+						<a href=''><i class='ico'></i><span class='txt'>排行榜</span></a>
+					</div>
+					<div class="h-l-s-main">
+						<input type="" class="search" placeholder='极限欢乐颂，开启唱将模式' />
+						<i class="button"></i>
+					</div>
+				</div>
+			</div>
+
+			<div id="h-nav">
+				<div class="h-n-main">
+					<ul class="h-n-m-list">
+						<li class="navLi l1"><a href="" class="nav-a1"><span class="num"></span><span class="txt">首页</span></a></li>
+						<li class="navLi">
+							<a href="" class="nav-a1"><span class="num">651</span><span class="txt">动画</span></a>
+							<!-- <div class="navHide">
+								<ul class="hideList">
+									<li class="hideLi">
+										<a href="" class="nav-a2">
+											<span class="leftArrow"></span>
+											<span class="midTxt">MAD·AMV</span>
+											<span class="rightArrow"><span></span></span>
+										</a>
+									</li>
+									<li class="hideLi">
+										<a href="" class="nav-a2">
+											<span class="leftArrow"></span>
+											<span class="midTxt">MMD·3D</span>
+											<span class="rightArrow"><span></span></span>
+										</a>
+									</li>
+									<li class="hideLi">
+										<a href="" class="nav-a2">
+											<span class="leftArrow"></span>
+											<span class="midTxt">短片·手书·配音</span>
+											<span class="rightArrow"><span></span></span>
+										</a>
+									</li>
+									<li class="hideLi">
+										<a href="" class="nav-a2">
+											<span class="leftArrow"></span>
+											<span class="midTxt">综合</span>
+											<span class="rightArrow"><span></span></span>
+										</a>
+									</li>
+								</ul>
+							</div> -->
+						</li>
+						<li class="navLi"><a href="" class="nav-a1"><span class="num">83</span><span class="txt">番剧</span></a></li>
+						<li class="navLi"><a href="" class="nav-a1"><span class="num">898</span><span class="txt">音乐</span></a></li>
+						<li class="navLi"><a href="" class="nav-a1"><span class="num">141</span><span class="txt">舞蹈</span></a></li>
+						<li class="navLi"><a href="" class="nav-a1"><span class="num">999+</span><span class="txt">游戏</span></a></li>
+						<li class="navLi"><a href="" class="nav-a1"><span class="num">582</span><span class="txt">科技</span></a></li>
+						<li class="navLi"><a href="" class="nav-a1"><span class="num">999+</span><span class="txt">生活</span></a></li>
+						<li class="navLi"><a href="" class="nav-a1"><span class="num">120</span><span class="txt">鬼畜</span></a></li>
+						<li class="navLi"><a href="" class="nav-a1"><span class="num">200</span><span class="txt">时尚</span></a></li>
+						<li class="navLi"><a href="" class="nav-a1"><span class="num">999+</span><span class="txt">娱乐</span></a></li>
+						<li class="navLi"><a href="" class="nav-a1"><span class="num">766</span><span class="txt">影视</span></a></li>
+					</ul>
+				</div>
+				<div class="h-n-slide">
+					<ul class='h-n-s-list'>
+						<li class='square'>
+							<a href="" class="square-a">
+								<i class="img"></i>
+								<span class="txt">广场</span>
+							</a>
+							<div class="square-hide">
+								<div class="s-h-left">
+									<ul>
+										<li><a href=""><i class='i1'></i><span>活动中心</span></a></li>
+										<li><a href=""><i class='i2'></i><span>游戏中心</span></a></li>
+										<li><a href=""><i class='i3'></i><span>画友</span></a></li>
+										<li><a href=""><i class='i4'></i><span>芒果TV</span></a></li>
+									</ul>
+								</div>
+								<div class="s-h-right"><a href><img src="img/banner/square.jpg" alt="" /></a></div>
+							</div>
+						</li>
+						<li class='live'>
+							<a href="" class="live-a">
+								<i class="img"></i>
+								<span class="txt">直播</span>
+							</a>
+							<div class="navHide">
+								<ul class="hideList">
+									<li class="hideLi">
+										<a href="" class="nav-a2">
+											<span class="leftArrow"></span>
+											<span class="midTxt">萌宅推荐</span>
+											<span class="rightArrow"><span></span></span>
+										</a>
+									</li>
+									<li class="hideLi">
+										<a href="" class="nav-a2">
+											<span class="leftArrow"></span>
+											<span class="midTxt">手机直播</span>
+											<span class="rightArrow"><span></span></span>
+										</a>
+									</li>
+									<li class="hideLi">
+										<a href="" class="nav-a2">
+											<span class="leftArrow"></span>
+											<span class="midTxt">绘画专区</span>
+											<span class="rightArrow"><span></span></span>
+										</a>
+									</li>
+									<li class="hideLi">
+										<a href="" class="nav-a2">
+											<span class="leftArrow"></span>
+											<span class="midTxt">唱见舞见</span>
+											<span class="rightArrow"><span></span></span>
+										</a>
+									</li>
+									<li class="hideLi">
+										<a href="" class="nav-a2">
+											<span class="leftArrow"></span>
+											<span class="midTxt">御宅文化</span>
+											<span class="rightArrow"><span></span></span>
+										</a>
+									</li>
+									<li class="hideLi">
+										<a href="" class="nav-a2">
+											<span class="leftArrow"></span>
+											<span class="midTxt">生活娱乐</span>
+											<span class="rightArrow"><span></span></span>
+										</a>
+									</li>
+									<li class="hideLi">
+										<a href="" class="nav-a2">
+											<span class="leftArrow"></span>
+											<span class="midTxt">单机联机</span>
+											<span class="rightArrow"><span></span></span>
+										</a>
+									</li>
+									<li class="hideLi">
+										<a href="" class="nav-a2">
+											<span class="leftArrow"></span>
+											<span class="midTxt">网络游戏</span>
+											<span class="rightArrow"><span></span></span>
+										</a>
+									</li>
+									<li class="hideLi">
+										<a href="" class="nav-a2">
+											<span class="leftArrow"></span>
+											<span class="midTxt">电子竞技</span>
+											<span class="rightArrow"><span></span></span>
+										</a>
+									</li>
+									<li class="hideLi">
+										<a href="" class="nav-a2">
+											<span class="leftArrow"></span>
+											<span class="midTxt">放映厅</span>
+											<span class="rightArrow"><span></span></span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class='gif'><a href=""><img src="img/header/1.gif" alt="" /></a></li>
+						<li class='phone'>
+							<div class="phoneHide">
+								<div class="qr"><img src="img/header/app-qrcode.png" alt="" width=97 height=97 /></div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- end header-->
+
+		<!-- banner start-->
+		<div id="banner">
+			<div id="b-main">
+				<div class="pic">
+					<ul class="p-ul">
+						<li class="bannerList">
+							<a href=""><img src="img/banner/left/1.jpg" alt="" /></a>
+							<p><a href="">历史策略类游戏推荐</a></p>
+						</li>
+						<li class="bannerList">
+							<a href=""><img src="img/banner/left/2.jpg" alt="" /></a>
+							<p><a href="">一颗榴莲的救世传说</a></p>
+						</li>
+						<li class="bannerList">
+							<a href=""><img src="img/banner/left/3.jpg" alt="" /></a>
+							<p><a href="">更多夏日新作来袭！</a></p>
+						</li>
+						<li class="bannerList">
+							<a href=""><img src="img/banner/left/4.jpg" alt="" /></a>
+							<p><a href="">更多BDC EP39</a></p>
+						</li>
+						<li class="bannerList">
+							<a href=""><img src="img/banner/left/5.jpg" alt="" /></a>
+							<p><a href="">更多周末放映室 第97期</a></p>
+						</li>
+					</ul>
+				</div>
+				<div class="tab">
+					<ul class="t-ul">
+						<li class="tabList on"></li>
+						<li class="tabList"></li>
+						<li class="tabList"></li>
+						<li class="tabList"></li>
+						<li class="tabList"></li>
+					</ul>
+				</div>
+				<a href="" class='more'>更多&gt;</a>
+			</div>
+			<div id="b-show">
+				<div class="b-s-tab">
+					<!-- <ul class='showUl1 showUl'>
+						<li class="showList">
+							<a href="">
+								<img src="img/banner/right/1/1.jpg" alt="" />
+								<div class="showHide on">
+									<p class='title'>这土拨鼠叫得人撕心裂肺</p>
+									<p class='up'>up主：边duang边搞比利</p>
+									<p class='plays'>播放：221163</p>
+								</div>
+							</a>
+						</li>
+						<li class="showList"></li>
+						<li class="showList"></li>
+						<li class="showList"></li>
+						<li class="showList"></li>
+						<li class="showList"></li>
+					</ul>
+					<ul class='showUl2 showUl'>
+						<li class="showList"></li>
+						<li class="showList"></li>
+						<li class="showList"></li>
+						<li class="showList"></li>
+						<li class="showList"></li>
+						<li class="showList"></li>
+					</ul>
+					<ul class='showUl3 showUl'>
+						<li class="showList"></li>
+						<li class="showList"></li>
+						<li class="showList"></li>
+						<li class="showList"></li>
+						<li class="showList"></li>
+						<li class="showList"></li>
+					</ul> -->
+				</div>
+				<div class="b-s-btn">
+					<div class="left">
+						<i></i>
+						<span>昨日</span>
+					</div>
+					<div class="right">
+						<i></i>
+						<span>一周</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end banner-->
+		
+		<!-- promote start -->
+		<div id="promote">
+			
+			<div class="p-top">
+				<div class="p-t-logo">
+					<i></i>
+					<h2>推广</h2>
+				</div>
+				<div class="p-t-link">
+					<a href="">一大波角虫接近中(๑•̀ㅂ•́)و✧</a> |
+					<a href="">我的梦想是有一个女票w</a> |
+					<a href="">帅赢坂本行动企划ing(≥ω≤)</a>
+				</div>
+				<div class="p-t-count">
+					<a href="">在线人数：679886</a> |
+					<a href="">最新投稿：7793</a>
+				</div>
+			</div>
+			<div class="p-content">
+				<ul class='p-c-Ul'>
+					<li class='conLi'>
+						<a href="" class='con-a1'>
+							<div class='con-img1'><img src="img/promote/1.jpg" alt="" /></div>
+							<p class='con-p1'>伊藤香奈子献声！《苍之骑士团》超热血OP公映</p>
+							<div class='BarrageDiv'>
+								<span class="barrage">吊吊吊</span>
+								<span class="barrage">经费在燃烧系列</span>
+								<span class="barrage">我要把硬币数投到23333</span>
+								<span class="barrage">吊吊吊2333333333333333，一看到费玉清就想笑</span>
+								<span class="barrage">陶大宇2333333333</span>
+								<span class="barrage">常山赵子龙长得帅</span>
+								<span class="barrage">on may way没媳妇儿</span>
+								<span class="barrage">尼古拉斯没有工作了</span>
+								<span class="barrage">‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬</span>
+								<span class="barrage">好像张逗张花那个栏目的chris啊</span>
+								<span class="barrage">老实的牛不老实</span>
+								<span class="barrage">开哥帅过吴彦祖</span>
+								<span class="barrage">上门开锁老板跑路了</span>
+								<span class="barrage">老牛这个月没工资</span>
+								<span class="barrage">阿飞老师的脑残粉没有女朋友</span>
+							</div>
+						</a>
+						<div class="p-c-conLiHide">
+							<!-- <p class='p-c-c-title'>伊藤香奈子献声！《苍之骑士团》超热血OP公映</p>
+							<p class='p-c-c-dec'><span class='up'>哔哩哔哩游戏中心</span>|<span class='time'>2016-07-06 18:35</span></p>
+							<div class="p-c-c-detail">
+								<div class="p-c-c-d-left"><img src="img/promote/1.jpg" alt="" /></div>
+								<div class="p-c-c-d-right">风靡11区的SEGA手游大作《苍之骑士团》已经正式登陆！背负着宿命的骑士们，将如何书写Hortensia王国</div>
+							</div>
+							<p class='p-c-c-data'>
+								<span class='plays'>11.5万</span>
+								<span class='comment'>468</span>
+								<span class='collection'>3564</span>
+								<span class='coin'>176</span>
+							</p> -->
+						</div>
+					</li>
+					<li class='conLi'>
+						<a href="" class='con-a1'>
+							<div class='con-img1' data-time='2:49'><img src="img/promote/2.jpg" alt="" /></div>
+							<p class='con-p1'>【日影日剧混剪】霓虹少女群像，一辈子做女孩</p>
+							<div class='BarrageDiv'>
+								<span class="barrage">吊吊吊</span>
+								<span class="barrage">经费在燃烧系列</span>
+								<span class="barrage">我要把硬币数投到23333</span>
+								<span class="barrage">吊吊吊2333333333333333，一看到费玉清就想笑</span>
+								<span class="barrage">陶大宇2333333333</span>
+								<span class="barrage">常山赵子龙长得帅</span>
+								<span class="barrage">on may way没媳妇儿</span>
+								<span class="barrage">尼古拉斯没有工作了</span>
+								<span class="barrage">‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬</span>
+								<span class="barrage">好像张逗张花那个栏目的chris啊</span>
+								<span class="barrage">老实的牛不老实</span>
+								<span class="barrage">开哥帅过吴彦祖</span>
+								<span class="barrage">上门开锁老板跑路了</span>
+								<span class="barrage">老牛这个月没工资</span>
+								<span class="barrage">阿飞老师的脑残粉没有女朋友</span>
+							</div>
+						</a>
+						<div class="p-c-conLiHide"></div>
+					</li>
+					<li class='conLi'>
+						<a href="" class='con-a1'>
+							<div class='con-img1'><img src="img/promote/3.jpg" alt="" /></div>
+							<p class='con-p1'>【猪仔钢琴】Rain-钢之炼金术师FA-OP 5-SID- 完整版</p>
+							<div class='BarrageDiv'>
+								<span class="barrage">吊吊吊</span>
+								<span class="barrage">经费在燃烧系列</span>
+								<span class="barrage">我要把硬币数投到23333</span>
+								<span class="barrage">吊吊吊2333333333333333，一看到费玉清就想笑</span>
+								<span class="barrage">陶大宇2333333333</span>
+								<span class="barrage">常山赵子龙长得帅</span>
+								<span class="barrage">on may way没媳妇儿</span>
+								<span class="barrage">尼古拉斯没有工作了</span>
+								<span class="barrage">‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬</span>
+								<span class="barrage">好像张逗张花那个栏目的chris啊</span>
+								<span class="barrage">老实的牛不老实</span>
+								<span class="barrage">开哥帅过吴彦祖</span>
+								<span class="barrage">上门开锁老板跑路了</span>
+								<span class="barrage">老牛这个月没工资</span>
+								<span class="barrage">阿飞老师的脑残粉没有女朋友</span>
+							</div>
+						</a>
+						<div class="p-c-conLiHide"></div>
+					</li>
+					<li class='conLi'>
+						<a href="" class='con-a1'>
+							<div class='con-img1' data-time='5:29'><img src="img/promote/4.jpg" alt="" /></div>
+							<p class='con-p1'>【船模】1:144比例军舰对战（真.战舰世界）</p>
+							<div class='BarrageDiv'>
+								<span class="barrage">吊吊吊</span>
+								<span class="barrage">经费在燃烧系列</span>
+								<span class="barrage">我要把硬币数投到23333</span>
+								<span class="barrage">吊吊吊2333333333333333，一看到费玉清就想笑</span>
+								<span class="barrage">陶大宇2333333333</span>
+								<span class="barrage">常山赵子龙长得帅</span>
+								<span class="barrage">on may way没媳妇儿</span>
+								<span class="barrage">尼古拉斯没有工作了</span>
+								<span class="barrage">‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬</span>
+								<span class="barrage">好像张逗张花那个栏目的chris啊</span>
+								<span class="barrage">老实的牛不老实</span>
+								<span class="barrage">开哥帅过吴彦祖</span>
+								<span class="barrage">上门开锁老板跑路了</span>
+								<span class="barrage">老牛这个月没工资</span>
+								<span class="barrage">阿飞老师的脑残粉没有女朋友</span>
+							</div>
+						</a>
+						<div class="p-c-conLiHide"></div>
+					</li>
+					<li class='conLi'>
+						<a href="" class='con-a1'>
+							<div class='con-img1' data-time='5:29'><img src="img/promote/4.jpg" alt="" /></div>
+							<p class='con-p1'>【船模】1:144比例军舰对战（真.战舰世界）</p>
+							<div class='BarrageDiv'>
+								<span class="barrage">吊吊吊</span>
+								<span class="barrage">经费在燃烧系列</span>
+								<span class="barrage">我要把硬币数投到23333</span>
+								<span class="barrage">吊吊吊2333333333333333，一看到费玉清就想笑</span>
+								<span class="barrage">陶大宇2333333333</span>
+								<span class="barrage">常山赵子龙长得帅</span>
+								<span class="barrage">on may way没媳妇儿</span>
+								<span class="barrage">尼古拉斯没有工作了</span>
+								<span class="barrage">‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬‭~‬</span>
+								<span class="barrage">好像张逗张花那个栏目的chris啊</span>
+								<span class="barrage">老实的牛不老实</span>
+								<span class="barrage">开哥帅过吴彦祖</span>
+								<span class="barrage">上门开锁老板跑路了</span>
+								<span class="barrage">老牛这个月没工资</span>
+								<span class="barrage">阿飞老师的脑残粉没有女朋友</span>
+							</div>
+						</a>
+						<div class="p-c-conLiHide"></div>
+					</li>
+					
+				</ul>
+				<div class='conImg'><a href><img src="img/promote/link.png" alt="" /></a></div>
+			</div>
+		</div>
+		<!-- end promote -->
+		<div id="slideWrap">
+			<div id="slide" class='top0'>
+				<ul>
+					<li><span>直播</span></li>
+					<li><span>番剧</span></li>
+					<li><span>动画</span></li>
+					<li><span>舞蹈</span></li>
+					<li><span>音乐</span></li>
+					<li><span>科技</span></li>
+					<li><span>游戏</span></li>
+					<li><span>生活</span></li>
+					<li><span>鬼畜</span></li>
+					<li><span>时尚</span></li>
+					<li><span>娱乐</span></li>
+					<li><span>电影</span></li>
+					<li><span>TV剧</span></li>
+					<li class='color'></li>
+				</ul>
+				<div class="sort">排序</div>
+				<div class="clone"></div>
+			</div>
+		</div>
+		
+		<!-- live start -->
+		<div id="live" class='nav'>
+			<div class="l-left">
+				<div class="l-l-top">
+					<p class='title'><i></i><a href>正在直播</a></p>
+					<p class='count'>当前共有<span>4650</span>个在线直播</p>
+					<p class='more'><a href="">更多 ></a></p>
+					<p class='new'><a href=''><i></i><span>3397</span>条新动态</a></p>
+				</div>
+				<div class="l-l-content">
+					<ul class="liveUl">
+						<!-- <li class="liveLi">
+							<div class="img"><img src="img/live/1.jpg" alt="" /></div>
+							<div class="title">【 C酱です】BIG BOSS C</div>
+							<div class="info">
+								<p class='up'><i></i><span>C酱です</span></p>
+								<p class='num'><i></i><span>6330</span></p>
+							</div>
+							<div class="avatar"><img src="img/live/avatar/1.jpg" alt="" /></div>
+						</li>
+						<li class="liveLi"></li>
+						<li class="liveLi"></li>
+						<li class="liveLi"></li>
+						<li class="liveLi"></li>
+						<li class="liveLi"></li>
+						<li class="liveLi"></li>
+						<li class="liveLi"></li>  -->
+					</ul>
+				</div>
+			</div>
+			<div class="l-right">
+				<div class="l-r-top">
+					<ul>
+						<li class='on'>直播排行<i></i></li>
+						<li>关注的主播<i></i></li>
+						<li>为你推荐<i></i></li>
+					</ul>
+				</div>
+				<div class="l-r-content">
+					<ul class="rightUl">
+						<li class="rightLi">
+							<i class='index'>1</i>
+							<div class='img'><img src="img/live/right/1.jpg" alt="" /></div>
+							<p class='info'><a href class='up'>神奇陆夫人</a><span class='num'><i></i>2.1万</span></p>
+							<p class='dec'>神奇陆直播</p>
+						</li>
+						<li class="rightLi">
+							<i class='index'>2</i>
+							<div class='img'><img src="img/live/right/2.jpg" alt="" /></div>
+							<p class='info'><a href class='up'>宫本·狗雨</a><span class='num'><i></i>1.9万</span></p>
+							<p class='dec'>(๑•̀ㅂ•́)و✧宫本 二狗子的直播间</p>
+						</li>
+						<li class="rightLi">
+							<i class='index'>3</i>
+							<div class='img'><img src="img/live/right/3.jpg" alt="" /></div>
+							<p class='info'><a href class='up'>满汉全席音乐团队</a><span class='num'><i></i>1.9万</span></p>
+							<p class='dec'>❤满汉❤汉子们の日常</p>
+						</li>
+						<li class="rightLi">
+							<i class='index qq'>4</i>
+							<div class='img'><img src="img/live/right/4.jpg" alt="" /></div>
+							<p class='info'><a href class='up'>LexBurner</a><span class='num'><i></i>1.5万</span></p>
+							<p class='dec'>没有赌局我好难受</p>
+						</li>
+						<li class="rightLi">
+							<i class='index qq'>5</i>
+							<div class='img'><img src="img/live/right/5.jpg" alt="" /></div>
+							<p class='info'><a href class='up'>哔哩哔哩直播活动</a><span class='num'><i></i>1.5万</span></p>
+							<p class='dec'>炉石传说超级联赛夏季赛</p>
+						</li>
+						<li class="rightLi">
+							<i class='index qq'>6</i>
+							<div class='img'><img src="img/live/right/6.jpg" alt="" /></div>
+							<p class='info'><a href class='up'>坂本叔</a><span class='num'><i></i>1.3万</span></p>
+							<p class='dec'>【坂本】被雨淹了的我只能做直播</p>
+						</li>
+					</ul>
+					<ul class="concern">
+						<li>
+							<div class="img"><img src="img/live/right/concern1.jpg" alt="" /></div>
+							<p class='info'><a class='up' href="">污污_永远的魔法师</a><span class='num'><i></i>5350</span></p>
+							<p class='dec'>【污污】福利绘制ing……</p>
+						</li>
+					</ul>
+					<ul class="recommend">
+						<li>
+							<img src="img/live/right/recommend.jpg" alt="" />
+							<a href="">BiliLive暑期歌舞夏令营（下）</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- end live -->
+
+		<div class="nav bangumi" style="background:#ffff99;">
+			<div class="bangumi-list">
+				<ul class="b-ul">
+					<li class="b-list">
+						<div class="img"><img src="img/bangumi/1.jpg" alt="" /></div>
+						<p class="title">超时空要塞Δ</p>
+						<p class="new">更新至<span>17话</span></p>
+					</li>
+					<li class="b-list">
+						<div class="img"><img src="img/bangumi/2.jpg" alt="" /></div>
+						<p class="title">齐木楠雄的灾难（日播版）</p>
+						<p class="new">更新至<span>16话</span></p>
+					</li>
+					<li class="b-list">
+						<div class="img"><img src="img/bangumi/3.jpg" alt="" /></div>
+						<p class="title">齐木楠雄的灾难</p>
+						<p class="new">更新至<span>16话</span></p>
+					</li>
+					<li class="b-list">
+						<div class="img"><img src="img/bangumi/4.jpg" alt="" /></div>
+						<p class="title">Re：从零开始的异世界生活</p>
+						<p class="new">更新至<span>16话</span></p>
+					</li>
+					<li class="b-list">
+						<div class="img"><img src="img/bangumi/5.jpg" alt="" /></div>
+						<p class="title">亚尔斯兰战记 风尘乱舞</p>
+						<p class="new">更新至<span>16话</span></p>
+					</li>
+					<li class="b-list">
+						<div class="img"><img src="img/bangumi/6.jpg" alt="" /></div>
+						<p class="title">热诚传说X</p>
+						<p class="new">更新至<span>16话</span></p>
+					</li>
+					<li class="b-list">
+						<div class="img"><img src="img/bangumi/7.jpg" alt="" /></div>
+						<p class="title">棒球伙伴</p>
+						<p class="new">更新至<span>16话</span></p>
+					</li>
+					<li class="b-list">
+						<div class="img"><img src="img/bangumi/8.jpg" alt="" /></div>
+						<p class="title">机动战士敢达独角兽 RE:0096</p>
+						<p class="new">更新至<span>16话</span></p>
+					</li>
+					<li class="b-list">
+						<div class="img"><img src="img/bangumi/9.jpg" alt="" /></div>
+						<p class="title">DAYS</p>
+						<p class="new">更新至<span>16话</span></p>
+					</li>
+					<li class="b-list">
+						<div class="img"><img src="img/bangumi/10.jpg" alt="" /></div>
+						<p class="title">Ange Vierge</p>
+						<p class="new">更新至<span>16话</span></p>
+					</li>
+					<li class="b-list">
+						<div class="img"><img src="img/bangumi/11.jpg" alt="" /></div>
+						<p class="title">屁屁吾郎</p>
+						<p class="new">更新至<span>16话</span></p>
+					</li>
+					<li class="b-list">
+						<div class="img"><img src="img/bangumi/12.jpg" alt="" /></div>
+						<p class="title">B-PROJECT～鼓动＊Ambitious～（僅限港澳台地區）</p>
+						<p class="new">更新至<span>16话</span></p>
+					</li>
+				</ul>
+				
+			</div>
+			<div class="scroll">
+				<div class='scrollbar'>
+					<div class="scrollthumb"></div>
+				</div>
+			</div>
+		</div>
+		<div class="nav" style="background:#ccffff;">动画</div>
+		<div class="nav" style="background:#ccff66;">舞蹈</div>
+		<div class="nav" style="background:#ff9966;">音乐</div>
+		<div class="nav" style="background:#cccccc;">科技</div>
+		<div class="nav" style="background:#cc9900;">游戏</div>
+		<div class="nav" style="background:#ff3300;">生活</div>
+		<div class="nav" style="background:#990000;">鬼畜</div>
+		<div class="nav" style="background:#6600ff;">时尚</div>
+		<div class="nav" style="background:#99ffcc;">娱乐</div>
+		<div class="nav" style="background:#33ffff;">电影</div>
+		<div class="nav" style="background:#00ff33;">TV剧</div>
+
+		<div id="footer" style='width:980px;height:700px;background:#ff6633;margin:0 auto'></div>
+
+		<script type="text/javascript" src='js/index.js'></script>
+
+		<script type="text/javascript">
+			window.onload = function(){
+				resizeX();
+				$(window).resize(resizeX);
+				function resizeX(){
+					if ( $(window).width() >= 1400 )
+					{
+						$('body').addClass('wide');
+					}else
+					{
+						$('body').removeClass('wide');
+					}
+				};
+			};
+			
+			(function(){
+				var $slide = $('#slide');
+				var $slideLi = $('#slide ul li').not('.color');
+				var $slideColor = $('#slide ul li.color');
+				var $slideSpan = $('#slide ul li span');
+				var $nav = $('.nav');
+				var $sort = $('#slide .sort');
+				var index;
+				var boolClick = true;
+				slidePos();
+				slideScorll();
+				$(window).scroll(function(){
+					slideScorll();
+				}).resize(function(){
+					slidePos();
+				});
+				
+				$slideLi.on('mouseenter' , 'span' ,function(){
+					$(this).addClass('hover');
+				});
+				$slideLi.on('mouseleave' , 'span' ,function(){
+					$(this).removeClass('hover');
+				});
+				$slideLi.on('click' , 'span' , function(){
+					var index = $(this).parent().index();
+					boolClick = false;
+					$(this).addClass('click').parent().siblings().find('span').removeClass('click');
+					if ( !$slideLi.hasClass('list') )
+					{
+						$slideColor.addClass('show');
+					}
+					$slideColor.stop().animate({
+						top : $(this).parent().position().top + 'px'
+					},300);
+					$('body,html').stop().animate({
+						scrollTop : $nav.eq(index).position().top
+					},300,function(){
+						boolClick = true;
+					});
+				});
+				$sort.hover(function(){
+					$(this).addClass('hover');
+				},function(){
+					$(this).removeClass('hover');
+				}).click(function(){
+					$slideColor.addClass('list');
+					$slideLi.addClass('list');
+					var $div = $('<div></div>');
+					var $cover = $('<div id="slideCover"></div>');
+					$cover.css({
+						width : '200px',
+						height : '630px',
+						background : 'rgba(255,255,255,.8)',
+						position : 'fixed',
+						zIndex : '100',
+						borderRadius : '5px',
+						top : $slide.position().top - 15 + 'px',
+						left : $slide.position().left - 130 + parseFloat($slide.css('marginLeft')) + 'px'
+					});
+					$div.css({
+						position : 'fixed',
+						top : '0px',
+						left : 0,
+						width : '100%',
+						height : '100%',
+						background : 'rgba(0,0,0,.5)',
+						zIndex : 99
+					});
+					$div.append($cover);
+					$('body').append($div);
+					$cover.click(function(e){
+						return false;
+					});
+					$div.click(function(){
+						$(this).remove();
+						$slideColor.removeClass('list show').addClass('hide');
+						$slideLi.removeClass('list');
+						$('#slide li').off('mousedown');
+					});
+					$('#slide li.list').on('mousedown', 'span' , function(e){
+						var startTop = $(this).position().top;
+						var sTop = startTop;
+						$(this).hide();
+						$('#slide .clone').css({
+							top : startTop + 'px',
+							left : '0px'
+						}).html($(this).html()).show();
+						var eX = e.clientX;
+						var eY = e.clientY;
+						
+						var $This = $(this);
+						var sortIndex = $(this).parent().index();
+						$(document).on('mousemove',function(e){
+							$('#slide .clone').css({
+								top : sTop + e.clientY - eY + 'px',
+								left : e.clientX - eX + 'px'
+							});
+							var top = $('#slide .clone').position().top - startTop;
+							console.log( $('#slide .clone').position().top +','+ startTop )
+							if ( top<0 )
+							{
+								var a = parseInt( -top / 34 );
+								if ( a )
+								{
+									var h1 = $slideLi.eq(sortIndex).find('span');
+									var h2 = $slideLi.eq(sortIndex-a).find('span');
+									$slideLi.eq(sortIndex).html( h2 );
+									$slideLi.eq(sortIndex-a).html( h1 );
+
+									var navh1 = $nav.eq(sortIndex).html();
+									var navh2 = $nav.eq(sortIndex-a).html();
+									$nav.eq(sortIndex).html( navh2 );
+									$nav.eq(sortIndex-a).html( navh1 );
+									sortIndex = sortIndex - a;
+									startTop = startTop - a*34;
+								}
+							};
+						});
+						$(document).mouseup(function(){
+							$(this).off('mousemove');
+							$('#slide ul li span').show();
+							$('#slide .clone').hide();
+						});
+					});
+					$slideLi.each(function(){
+						this.onselectstart = function(){
+							return false;
+						}
+					});
+				});
+				function slidePos(){
+					$(window).height() < $slide.height()+130?$slide.addClass('on'):$slide.removeClass('on');
+					if ( $('#slideCover').length )
+					{
+						console.log( 1 );
+						$('#slideCover').css({
+							top : $slide.position().top - 15 + 'px',
+							left : $slide.position().left - 130 + parseFloat($slide.css('marginLeft')) + 'px'
+						});
+					}
+				}
+				function slideScorll(){
+					$(document).scrollTop() >= 100?$slide.removeClass('top0'):$slide.addClass('top0');
+					if ( boolClick )
+					{
+						var x = index;
+						for (var i=0;i<$nav.length;i++ )
+						{
+							var a = $nav.eq(i).offset().top - $(document).scrollTop();
+							if ( a > $(window).height()/4 )
+							{
+								index = i-1;
+								break;
+							}else if ( i == $nav.length-1 )
+							{
+								index = i;
+							}
+						};
+						if ( index == -1 )
+						{
+							$slideColor.addClass('hide');
+							$slideSpan.removeClass('click');
+						}else{
+							if ( x != index )
+							{
+								$('#slide li span').eq(index).addClass('click').parent().siblings().find('span').removeClass('click');;
+								$slideColor.addClass('show').stop().animate({
+									top : $('#slide li span').eq(index).parent().position().top + 'px'
+								},300);
+							};
+						}
+					}
+				};
+			})();
+
+			(function(){
+				var $list = $('.bangumi-list');
+				var $bar = $('.bangumi .scrollbar');
+				var $thumb = $('.bangumi .scrollthumb');
+				var scrollH = $list[0].scrollHeight;
+				var divRan = scrollH - $list.height();
+				var barRan = $bar.height() - $thumb.outerHeight();
+				$list.scroll(function(){
+					var scrollTop = $(this).scrollTop();
+					var top = scrollTop * barRan / divRan;
+					$thumb.css('top' , top + 'px' );
+				});
+				$thumb.mousedown(function(e){
+					var eY = e.clientY;
+					var startTop = parseFloat( $(this).css('top') );
+					var minT = 0;
+					var maxT = barRan;
+					$(document).on('mousemove' , function(e){
+						var y_ = e.clientY;
+						var top = startTop + y_- eY;
+						top = Math.min( top , maxT );
+						top = Math.max( 0 , top );
+						$thumb.css('top' , top + 'px');
+						var scrollTop = top * divRan / barRan;
+						$list.scrollTop( scrollTop );
+						return false;
+					});
+					$(document).mouseup(function(){
+						$(this).off('mousemove');
+					});
+				});
+			})();
+		</script>
+	</body>
+</html>
